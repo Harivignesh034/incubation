@@ -144,3 +144,221 @@ public class controlstatement {
     }
 
 }
+
+-----------------------------------------------------------19/5/2022----------------------------------------------------------
+  
+  
+  
+class livingthings extends dogs {
+    private String name = "";
+    private byte age = 0;
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setage(byte age) {
+        this.age = age;
+    }
+
+    public String getName() {
+        return this.name;
+    }
+
+    public byte getage() {
+        return this.age;
+    }
+
+    livingthings get() {
+        return this;
+    }
+
+}
+
+interface works {
+    public void dance();
+
+    public void play();
+}
+
+abstract class animal implements works {
+
+    public void eat() {
+        System.out.println("can eat");
+    }
+
+    abstract void speak();
+
+}
+
+class dogs extends animal {
+
+    void speak() {
+        System.out.println("can speak");
+    }
+
+    public void dance() {
+        System.out.println("can dance");
+
+    }
+
+    public void play() {
+        System.out.println("can play");
+    }
+
+    public int add(int n, int m) {
+        return n + m;
+    }
+
+}
+
+public class Oops1 {
+    public static void main(String[] args) {
+
+        livingthings l = new livingthings();
+        l.setName("lab");
+        l.setage((byte) 2);
+        System.out.println(l.getName() + "   " + l.getage());
+        works w = new dogs();
+        w.dance();
+        animal a = new dogs();
+        a.eat();
+
+    }
+
+}
+//oops
+
+
+import java.util.*;
+
+interface engine {
+    void get();
+
+    int discount(int n);
+}
+
+abstract class blueprint implements engine {
+    abstract int discount(int n, int p);
+
+}
+
+class motors extends blueprint {
+
+    String name = "audi";
+    static int wheels = 4;
+    static int max_speed = 150;
+    static int price = 500000;
+
+    static {
+        wheels = 10;
+        max_speed = 20;
+    }
+
+    void heat() {
+        System.out.print(this.name);
+
+    }
+
+    public void set(String name, int wheels, int max_speed) {
+        this.name = name;
+        this.wheels = wheels;
+        this.max_speed = max_speed;
+    }
+
+    static class inner {
+        void get() {
+            System.out.println("inner wheels " + wheels);
+        }
+    }
+
+    public void get() {
+        System.out.println("name :" + name + "\nwheels : " + wheels + "\nmax speed : " + max_speed);
+    }
+
+    {
+        System.out.println("name :" + name + "\nwheels : " + wheels + "\nmax speed : " + max_speed);
+    }
+
+    public int discount(int n) {
+        return price + (price / (100 / n));
+
+    }
+
+    public int discount(int n, int price) {
+        return price + (price / (100 / n));
+
+    }
+
+    @Override
+    public String toString() {
+        return "10";
+    }
+
+}
+
+public class car extends motors {
+    public int discount(int n) {
+        System.out.println("super");
+        return super.discount(n);
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        car c = new car();
+        System.out.println(wheels);
+
+        motors c1 = new car();
+        c1.set("mahindra", 5, 120);
+        motors.inner in = new motors.inner();
+        in.get();
+        System.out.println(c1);
+
+        boolean loop = true;
+        while (loop) {
+            System.out.println("1. print car detials | 2. EMI detials ");
+            int n = sc.nextInt();
+            switch (n) {
+                case 1:
+                    c1.get();
+                    break;
+                case 2:
+                    System.out.println("1. EMI in 12 months 10% interest  | 2. EMI in 24 months 15% interest");
+                    int m = sc.nextInt();
+                    if (m == 1) {
+                        System.out.println("actual price  :" + c1.price);
+                        System.out.println("actual price 10% : " + c1.discount(10));
+                    } else {
+                        System.out.println("actual price  :" + c1.price);
+                        System.out.println("actual price 15% : " + c1.discount(15, 500000));
+                    }
+                    break;
+                case 3:
+                    loop = false;
+                    break;
+            }
+        }
+
+    }
+}
+//java8
+
+class MySingleton {
+    static MySingleton instance = null;
+    public int x = 10;
+
+    final int PIN=100;
+
+    
+    private MySingleton() {
+    }
+
+   
+    static public MySingleton getInstance() {
+        if (instance == null)
+            instance = new MySingleton();
+
+        return instance;
+    }
+}
+  
